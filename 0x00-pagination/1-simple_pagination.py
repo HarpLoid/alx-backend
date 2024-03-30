@@ -38,7 +38,7 @@ class Server:
             return []
         idx_range = self.index_range(page, page_size)
         return self.dataset()[idx_range[0]:idx_range[1]]
-    
+
     def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
         """
         Returns a tuple of size two containing
@@ -50,4 +50,3 @@ class Server:
         start_index = (page - 1) * page_size
         end_index = start_index + page_size
         return (start_index, end_index)
-
