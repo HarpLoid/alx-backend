@@ -7,19 +7,6 @@ import math
 from typing import List, Tuple, Dict
 
 
-def index_range(page: int, page_size: int) -> Tuple:
-    """
-    Returns a tuple of size two containing
-    a start index and an end index
-    corresponding to the range of indexes
-    to return in a list for
-    those particular pagination parameters.
-    """
-    start_index = (page - 1) * page_size
-    end_index = start_index + page_size
-    return (start_index, end_index)
-
-
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -49,13 +36,25 @@ class Server:
             return []
         idx_range = index_range(page, page_size)
         return self.__dataset[idx_range[0]:idx_range[1]]
+    
+    def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
+        """
+        Returns a tuple of size two containing
+        a start index and an end index
+        corresponding to the range of indexes
+        to return in a list for
+        those particular pagination parameters.
+        """
+        start_index = (page - 1) * page_size
+        end_index = start_index + page_size
+        return (start_index, end_index)
 
     def get_hyper(self, page: int = 1,
-                  page_size: int = 10) -> Dict[int, List[List]]:
+                  page_size: int = 10) -> Dict:
         """
         Get page data with hypermedia
         """
-        total_pages = len(self.dataset()) // page_size
+        total_pages = math.ceil(len(self.dataset()) / page_size)
         data = self.get_page(page, page_size)
         if (page - 1) < 0:
             prev_page = None
