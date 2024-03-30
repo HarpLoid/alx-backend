@@ -19,6 +19,7 @@ def index_range(page: int, page_size: int) -> Tuple:
     end_index = start_index + page_size
     return (start_index, end_index)
 
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -38,11 +39,13 @@ class Server:
 
         return self.__dataset
 
-    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_page(self, page: int = 1,
+                 page_size: int = 10) -> List[List]:
         """
         Get page data
         """
-        assert isinstance(page_size, int) and isinstance(page, int) and page > 0 and page_size > 0
+        assert isinstance(page_size, int) and isinstance(
+            page, int) and page > 0 and page_size > 0
         if page > len(self.dataset()):
             return []
         idx_range = index_range(page, page_size)
