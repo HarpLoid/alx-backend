@@ -9,12 +9,13 @@ class BasicCache(BaseCaching):
     """
     Basic Cache class
     """
+
     def __init__(self):
         """
         Initializes the class
         """
         super().__init__()
-    
+
     def put(self, key, item):
         """
         puts an item into the cache
@@ -24,7 +25,7 @@ class BasicCache(BaseCaching):
             pass
 
         self.cache_data[key] = item
-    
+
     def get(self, key):
         """
         returns the item in cache
