@@ -21,7 +21,7 @@ class MRUCache(BaseCaching):
         """
         Adds items to the cache
         """
-        if key or item:
+        if key and item:
             if key in self.cache_data:
                 self.cache_data[key] = item
                 self.order_list.remove(key)
@@ -35,9 +35,6 @@ class MRUCache(BaseCaching):
 
             self.order_list.append(key)
             self.cache_data[key] = item
-
-        else:
-            pass
 
     def get(self, key):
         """
