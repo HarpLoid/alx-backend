@@ -23,20 +23,19 @@ app.config.from_object(Config)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale()-> str:
     """
     get locale of user and guess language
     """
     if request.args.get('locale') in app.config['LANGUAGES']:
         return request.args['locale']
-
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
-def index():
+def index()-> str:
     """
-    index
+    index of app
     """
     return render_template('4-index.html')
 

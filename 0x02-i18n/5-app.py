@@ -23,7 +23,7 @@ app.config.from_object(Config)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale()-> str:
     """
     get locale of user and guess language
     """
@@ -34,7 +34,7 @@ def get_locale():
 
 
 @app.route('/')
-def index():
+def index()-> str:
     """
     index
     """
@@ -49,7 +49,7 @@ users = {
 }
 
 
-def get_user():
+def get_user()-> dict:
     """
     gets user logged in
     """

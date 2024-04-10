@@ -3,7 +3,7 @@
 Module - app
 """
 from flask import Flask, render_template, request, g
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 
 app = Flask(__name__)
@@ -29,7 +29,7 @@ users = {
 }
 
 
-def get_user():
+def get_user()-> dict:
     """
     gets user logged in
     """
@@ -48,7 +48,7 @@ def before_request():
 
 
 @babel.localeselector
-def get_locale():
+def get_locale()-> str:
     """
     get locale of user and guess language
     """
@@ -60,7 +60,7 @@ def get_locale():
 
 
 @app.route('/')
-def index():
+def index()-> str:
     """
     index
     """
