@@ -9,6 +9,7 @@ from flask_babel import Babel, _
 app = Flask(__name__)
 babel = Babel(app)
 
+
 class Config:
     """
     Config class
@@ -16,6 +17,7 @@ class Config:
     LANGUAGES = ["en", "fr"]
     BABEL_DEF_LOCALE = "en"
     BABEL_DEF_TIMEZONE = "UTC"
+
 
 app.config.from_object(Config)
 
@@ -25,9 +27,9 @@ def get_locale():
     """
     get locale of user and guess language
     """
-    if 'locale' in request.args and request.args['locale'] in app.config['LANGUAGES']:
+    if request.args.get('locale') in app.config['LANGUAGES']:
         return request.args['locale']
-    
+
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
@@ -36,10 +38,7 @@ def index():
     """
     index
     """
-    return render_template('4-index.html',get_locale=get_locale,
-                           home_title=_('home_title'),
-                           home_header=_('home_header'))
-
+    return render_template('4-index.html')
 
 
 if __name__ == "__main__":

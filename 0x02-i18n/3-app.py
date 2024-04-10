@@ -9,6 +9,7 @@ from flask_babel import Babel
 app = Flask(__name__)
 babel = Babel(app)
 
+
 class Config:
     """
     Config class
@@ -16,6 +17,7 @@ class Config:
     LANGUAGES = ["en", "fr"]
     BABEL_DEF_LOCALE = "en"
     BABEL_DEF_TIMEZONE = "UTC"
+
 
 app.config.from_object(Config)
 
@@ -34,7 +36,6 @@ def index():
     index
     """
     return render_template('3-index.html')
-
 
 
 if __name__ == "__main__":

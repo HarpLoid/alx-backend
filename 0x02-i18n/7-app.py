@@ -9,6 +9,7 @@ import pytz
 app = Flask(__name__)
 babel = Babel(app)
 
+
 class Config:
     """
     Config class
@@ -16,6 +17,7 @@ class Config:
     LANGUAGES = ["en", "fr"]
     BABEL_DEF_LOCALE = "en"
     BABEL_DEF_TIMEZONE = "UTC"
+
 
 app.config.from_object(Config)
 
@@ -26,6 +28,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user():
     """
     gets user logged in
@@ -34,6 +37,7 @@ def get_user():
     if login_as:
         return users.get(int(login_as))
     return None
+
 
 @app.before_request
 def before_request():
@@ -53,6 +57,7 @@ def get_locale():
     if g.user and g.user.get('locale') in app.config['LANGUAGES']:
         return g.user['locale']
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 
 @babel.timezoneselector
 def get_timezone():
