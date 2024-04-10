@@ -29,7 +29,7 @@ users = {
 }
 
 
-def get_user()-> dict:
+def get_user() -> dict:
     """
     gets user logged in
     """
@@ -48,7 +48,7 @@ def before_request():
 
 
 @babel.localeselector
-def get_locale()-> str:
+def get_locale() -> str:
     """
     get locale of user and guess language
     """
@@ -60,7 +60,7 @@ def get_locale()-> str:
 
 
 @app.route('/')
-def index()-> str:
+def index() -> str:
     """
     index
     """
